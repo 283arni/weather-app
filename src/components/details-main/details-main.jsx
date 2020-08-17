@@ -1,12 +1,11 @@
 import React from 'react';
-import CloudIcon from '../../images/cloud.svg';
 
 const DetailsMain = () => {
   return (
     <div className="details__main">
       <div className="details__sky">
-        <img src={CloudIcon} alt="" className="details__sky-icon" />
-        <span className="details__sky-title">Sunny</span>
+        <img src="images/sunny.svg" alt="" className="details__sky-icon" />
+        <h2 className="details__sky-title">Sunny</h2>
       </div>
       <div className="details__temperature">
         <span className="details__temperature-number">33</span>
