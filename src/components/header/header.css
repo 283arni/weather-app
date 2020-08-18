@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__city::after {
+  display: block;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background-image: url('./images/facebook-places.svg');
+  background-size: 100% 100%;
+}

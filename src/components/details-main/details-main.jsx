@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './details-main.css';
+
 const DetailsMain = () => {
   return (
     <div className="details__main">

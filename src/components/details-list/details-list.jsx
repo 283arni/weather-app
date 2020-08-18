@@ -1,21 +1,26 @@
 import React from 'react';
 
-const items = [
-  {
-    name: 'Humidity',
-    src: 'images/humidity.svg'
-  }
-];
+import './details-list.css';
+
+const items = ['Humidity', 'Pressure', 'Wind', 'Sunrise', 'Sunset', 'Daytime'];
 
 const DetailsList = () => {
-  const [item] = items;
   return (
     <ul className="details__list">
-      <li className="details__item">
-        <img src={item.src} alt="Фывфыв" className="details__icon" />
-        <div className="details__value">49%</div>
-        <h3 className="details__title">{item.name}</h3>
-      </li>
+      {
+        items.map((item) => {
+          return (
+            <li
+              className="details__item"
+              key={item}
+            >
+              <img src={`images/${item.toLowerCase()}.svg`} alt="icon" className="details__icon" />
+              <div className="details__value">49%</div>
+              <h3 className="details__title">{item}</h3>
+            </li>
+          );
+        })
+      }
     </ul>
   );
 };

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './header.css';
+
 const Header = () => {
   return (
     <header className="header">
@@ -7,7 +9,7 @@ const Header = () => {
         <span className="header__time">Sunday, 19 May 2019 | 4:30PM</span>
       </div>
       <div className="header__location">
-        <span className="header__city">Mumbai, India</span>
+        <a href="/#" className="header__city">Mumbai, India</a>
       </div>
     </header>
   );
