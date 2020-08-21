@@ -1,13 +1,14 @@
 .header {
   display: flex;
   justify-content: space-between;
+  padding: 20px 0;
 }
 
-.header__city::after {
+.header__city {
   display: block;
-  content: '';
-  width: 20px;
-  height: 20px;
-  background-image: url('./images/facebook-places.svg');
-  background-size: 100% 100%;
+  background-image: url('/public/images/facebook-places.svg');
+  background-size: 11% 100%;
+  background-repeat: no-repeat;
+  background-position: right center;
+  padding-right: 20px;
 }
