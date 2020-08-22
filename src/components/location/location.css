@@ -1,0 +1,44 @@
+.location {
+  text-align: center;
+  padding: 20px;
+}
+
+.location__title {
+  font-size: 1rem;
+  color: #999999;
+  margin-bottom: 30px;
+}
+
+.location__search {
+  font-size: 1.2rem;
+  background-color: #F3F3F3;
+  background-image: url('/public/images/facebook-places-dark.svg');
+  background-position: 95% center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 40px;
+}
+
+.location__search::placeholder {
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.location__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.location__name {
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: #444444;
+}
+
+.location__temperature {
+  font-weight: 300;
+  color: #666666;
+}

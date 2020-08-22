@@ -15,9 +15,15 @@ const SliderWeek = () => {
             >
               <img src={day.icon} alt="icon" className="slider__icon" />
               <span className="slider__day">{day.date}</span>
-              <div className="slider__temperature">
-                <span className="slider__temperature-max">{`${day['temperature-max']}C`}</span>
-                <span className="slider__temperature-min">{`${day['temperature-min']}C`}</span>
+              <div className="slider__temperatures">
+                <span className="slider__temperature-max">
+                  {`${day['temperature-max']}`}
+                  <span className="celsius">&#176;C&#8595;</span>
+                </span>
+                <span className="slider__temperature-min">
+                  {`${day['temperature-min']}`}
+                  <span className="celsius">&#176;C&#8593;</span>
+                </span>
               </div>
             </li>
           );

@@ -9,7 +9,6 @@
 }
 
 .details__sky-title {
-  font-weight: 500;
   font-size: 1.2rem;
 }
 
@@ -23,7 +22,6 @@
 .details__temperature-number .celsius {
   position: absolute;
   top: 15px;
-  font-weight: 500;
   font-size: 24px;
   color: #666666;
 }
@@ -31,6 +29,7 @@
 .details__intervals {
   display: flex;
   flex-direction: column;
+  color: #999999;
 }
 
 .details__interval-max {

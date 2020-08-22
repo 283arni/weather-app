@@ -1,7 +1,11 @@
 .header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 20px;
+}
+
+.header__time {
+  font-weight: normal;
 }
 
 .header__city {
@@ -11,4 +15,6 @@
   background-repeat: no-repeat;
   background-position: right center;
   padding-right: 20px;
+  color: #0DA0EA;
+  
 }

@@ -16,5 +16,6 @@ rules: {
   "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
   "linebreak-style": 0,
   "comma-dangle": ["error", "never"],
-  "arrow-body-style": ["error", "always"]
+  "arrow-body-style": 0,
+  "import/no-named-as-default": 0
 }
