@@ -2,31 +2,43 @@ import extend from '../utils';
 import keyApi from '../const';
 
 const initialState = {
-  city: {},
+  city: null,
   cities: []
 };
 
 const Actions = {
-  GET_CITIES: 'GET_CITIES'
+  GET_CITY: 'GET_CITY',
+  ADD_CITY: 'ADD_CITY'
 };
 
 const ActionCreator = {
-  getCities: (city) => ({
-    type: Actions.GET_CITIES,
+  getCity: (city) => ({
+    type: Actions.GET_CITY,
     payload: city
+  }),
+  addCity: (city, cities) => ({
+    type: Actions.ADD_CITY,
+    payload: [...cities, city]
   })
 };
 
 const Operation = {
-  loadCities: (city) => (dispatch, getState, api) => {
-    return api.get(`/weather?q=${city}&appid=${keyApi}`)
-      .then((response) => dispatch(ActionCreator.getCities(response)));
+  loadCity: (city, cities) => (dispatch, getState, api) => {
+    return api.get(`/weather?q=${city}&appid=${keyApi}&units=metric`)
+      .then((response) => {
+        dispatch(ActionCreator.getCity(response.data));
+        dispatch(ActionCreator.addCity(response.data, cities));
+      });
   }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case Actions.GET_CITIES:
+    case Actions.GET_CITY:
+      return extend(state, {
+        city: action.payload
+      });
+    case Actions.ADD_CITY:
       return extend(state, {
         cities: action.payload
       });

@@ -17,5 +17,7 @@ rules: {
   "linebreak-style": 0,
   "comma-dangle": ["error", "never"],
   "arrow-body-style": 0,
-  "import/no-named-as-default": 0
+  "import/no-named-as-default": 0,
+  "react/no-unused-state": 0,
+  "prefer-object-spread": 0
 }

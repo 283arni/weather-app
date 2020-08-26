@@ -1,18 +1,18 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
-
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Location from '../location/location';
 import CityInfo from '../city-info/city-info';
-import { getCities, getCity } from '../../reducers/selector';
+import { getCities, getConvertCity } from '../../reducers/selector';
 
+import { Operation } from '../../reducers/data';
 import './app.css';
 
 class App extends PureComponent {
   render() {
-    const { cities, city } = this.props;
+    const { cities, city, onFormSubmit } = this.props;
 
     return (
       <div className="wrapper">
@@ -28,6 +28,7 @@ class App extends PureComponent {
                 <Route path="/location" exact>
                   <Location
                     cities={cities}
+                    onFormSubmit={onFormSubmit}
                   />
                 </Route>
               </Switch>
@@ -41,15 +42,22 @@ class App extends PureComponent {
 
 App.propTypes = {
   cities: PropTypes.arrayOf(
-    PropTypes.array
+    PropTypes.any
   ).isRequired,
-  city: PropTypes.shape().isRequired
+  city: PropTypes.shape().isRequired,
+  onFormSubmit: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  city: getCity(state),
+  city: getConvertCity(state),
   cities: getCities(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onFormSubmit(city, cities) {
+    dispatch(Operation.loadCity(city, cities));
+  }
+});
+
 export { App };
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
