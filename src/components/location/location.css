@@ -9,27 +9,18 @@
   margin-bottom: 30px;
 }
 
-.location__search {
-  font-size: 1.2rem;
-  background-color: #F3F3F3;
-  background-image: url('/public/images/facebook-places-dark.svg');
-  background-position: 95% center;
-  background-repeat: no-repeat;
-  border-radius: 4px;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 40px;
-}
 
-.location__search::placeholder {
-  font-size: 1.2rem;
-  color: #000;
-}
 
-.location__item {
+.location__link {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  padding: 5px;
+}
+
+.location__link:hover {
+  background: #ECF7FD;
 }
 
 .location__name {

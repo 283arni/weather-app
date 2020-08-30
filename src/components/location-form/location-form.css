@@ -1,0 +1,17 @@
+.location__search {
+  font-size: 1.2rem;
+  background-color: #F3F3F3;
+  background-image: url('/public/images/facebook-places-dark.svg');
+  background-position: 97% center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  padding: 10px 30px 10px 10px;
+  margin-bottom: 40px;
+}
+
+.location__search::placeholder {
+  font-size: 1.2rem;
+  color: rgb(161, 161, 161);
+}

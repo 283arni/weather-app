@@ -1,5 +1,6 @@
-import extend from '../utils';
+import { extend } from '../utils';
 import keyApi from '../const';
+import WeatherModel from '../adapters/weather-model';
 
 const initialState = {
   city: null,
@@ -26,8 +27,8 @@ const Operation = {
   loadCity: (city, cities) => (dispatch, getState, api) => {
     return api.get(`/weather?q=${city}&appid=${keyApi}&units=metric`)
       .then((response) => {
-        dispatch(ActionCreator.getCity(response.data));
-        dispatch(ActionCreator.addCity(response.data, cities));
+        const convertCity = WeatherModel.parseWeather(response.data);
+        dispatch(ActionCreator.addCity(convertCity, cities));
       });
   }
 };

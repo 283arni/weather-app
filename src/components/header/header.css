@@ -1,7 +1,22 @@
 .header {
   display: flex;
-  justify-content: space-between;
-  padding: 20px;
+  height: 45px;
+}
+
+.header__date {
+  display: flex;
+  flex: 1.5;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__location {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 10px;
+  background-color: #ECF7FD;
 }
 
 .header__time {
@@ -11,10 +26,9 @@
 .header__city {
   display: block;
   background-image: url('/public/images/facebook-places.svg');
-  background-size: 11% 100%;
+  background-size: 14% 100%;
   background-repeat: no-repeat;
   background-position: right center;
   padding-right: 20px;
   color: #0DA0EA;
-  
 }

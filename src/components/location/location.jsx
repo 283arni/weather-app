@@ -1,71 +1,51 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
+import LocationForm from '../location-form/location-form';
+import withLocationForm from '../../hocs/with-location-form';
 import './location.css';
 
-class Location extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      locationName: ''
-    };
-  }
+const LocationFormWrapper = withLocationForm(LocationForm);
 
-  handleLocationSubmit(e) {
-    e.preventDefault();
-
-    const { onFormSubmit, cities } = this.props;
-    const { locationName } = this.state;
-
-    onFormSubmit(locationName, cities);
-  }
-
-  handleLocationChange(e) {
-    this.setState({
-      locationName: e.target.value
-    });
-  }
-
-  render() {
-    const { cities } = this.props;
-    return (
-      <form
-        className="location"
-        action="#"
-        method="post"
-        onSubmit={(e) => this.handleLocationSubmit(e)}
-      >
-        <h2 className="location__title">Location</h2>
-        <input
-          type="text"
-          className="location__search"
-          placeholder="Mumbai"
-          onChange={(e) => this.handleLocationChange(e)}
-        />
-        <ul className="location__list">
-          {cities.length ? cities.map((city) => (
-            <li
-              className="location__item"
-              key={city.id}
+const Location = ({ cities, onFormSubmit, onCityClick }) => {
+  return (
+    <div className="location">
+      <h2 className="location__title">Location</h2>
+      <LocationFormWrapper
+        cities={cities}
+        onFormSubmit={onFormSubmit}
+      />
+      <ul className="location__list">
+        {cities.length ? cities.map((city) => (
+          <li
+            className="location__item"
+            key={city.id}
+          >
+            <Link
+              to="/details"
+              className="location__link"
+              onClick={() => onCityClick(city)}
             >
               <span className="location__name">{city.name}</span>
               <span className="location__temperature">
                 {city.main.temp}
                 <span className="celsius">&#176;C</span>
               </span>
-            </li>
-          )) : null}
-        </ul>
-      </form>
-    );
-  }
-}
+            </Link>
+          </li>
+        )) : null}
+      </ul>
+    </div>
+  );
+};
 
 Location.propTypes = {
   cities: PropTypes.arrayOf(
     PropTypes.any
   ).isRequired,
-  onFormSubmit: PropTypes.func.isRequired
+  onFormSubmit: PropTypes.func.isRequired,
+  onCityClick: PropTypes.func.isRequired
 };
 
 export default Location;

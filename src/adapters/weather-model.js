@@ -1,3 +1,5 @@
+import { formatTime } from '../utils';
+
 class WeatherModel {
   constructor(data) {
     this.coord = {
@@ -14,29 +16,29 @@ class WeatherModel {
     ];
     this.base = data.base;
     this.main = {
-      temp: data.main.temp,
-      feelsLike: data.main.feels_like,
-      tempMin: data.main.temp_min,
-      tempMax: data.main.temp_max,
-      pressure: data.main.pressure,
-      humidity: data.main.humidity
+      temp: Math.floor(data.main.temp),
+      feelsLike: Math.floor(data.main.feels_like),
+      tempMin: Math.floor(data.main.temp_min),
+      tempMax: Math.floor(data.main.temp_max),
+      pressure: `${Math.floor(data.main.pressure)}mBar`,
+      humidity: `${Math.floor(data.main.humidity)}%`
     };
     this.visibility = data.visibility;
     this.wind = {
-      speed: data.wind.speed,
+      speed: `${data.wind.speed}m/s`,
       deg: data.wind.deg
     };
     this.clouds = {
       all: data.clouds.all
     };
-    this.dt = data.dt;
+    this.dt = new Date(data.dt * 1000).toLocaleString();
     this.sys = {
       type: data.sys.type,
       id: data.sys.id,
       message: data.sys.message,
       country: data.sys.country,
-      sunrise: data.sys.sunrise,
-      sunset: data.sys.sunset
+      sunrise: formatTime(new Date(data.sys.sunrise * 1000)),
+      sunset: formatTime(new Date(data.sys.sunset * 1000))
     };
     this.timezone = data.timezone;
     this.id = data.id;
