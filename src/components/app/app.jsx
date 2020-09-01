@@ -13,6 +13,25 @@ import defaultCity from '../../mocks/city';
 import './app.css';
 
 class App extends PureComponent {
+  // need refactoring
+  static changeBackgroundImage(city) {
+    console.log(city);
+    if (city && (new Date(city.dt).getHours() >= 20 || new Date(city.dt).getHours() <= 5)) {
+      return "url('public/images/graphic-night.svg')";
+    }
+    if (!city || city.dt) {
+      return "url('public/images/graphic.svg')";
+    }
+
+    return "url('public/images/graphic.svg')";
+  }
+
+  constructor(props) {
+    super(props);
+
+    this._weather = React.createRef();
+  }
+
   render() {
     const {
       cities,
@@ -20,10 +39,16 @@ class App extends PureComponent {
       onFormSubmit,
       onCityClick
     } = this.props;
-    console.log(city)
+    console.log(this._weather);
     return (
       <div className="wrapper">
-        <div className="weather">
+        <div
+          ref={this._weather}
+          className="weather"
+          style={{
+            backgroundImage: this.changeBackgroundImage(city)
+          }}
+        >
           <div className="weather__container">
             <BrowserRouter>
               <Switch>

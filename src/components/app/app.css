@@ -37,7 +37,6 @@ a {
 .weather {
   width: 375px;
   overflow: hidden;
-  background-image: url('/public/images/graphic.svg');
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 100% auto;
