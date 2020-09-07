@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 import cityType from '../../types/city';
 import defaultCity from '../../mocks/city';
+import { Heigth } from '../../const';
 import './header.css';
 
-const Header = ({ city }) => {
+const Header = ({ city, onHeightContainerChange }) => {
   return (
     <header className="header">
       <div className="header__date">
@@ -16,6 +17,7 @@ const Header = ({ city }) => {
         <Link
           to="/"
           className="header__city"
+          onClick={() => onHeightContainerChange(Heigth.MAX)}
         >
           {city.name}
         </Link>
@@ -25,7 +27,8 @@ const Header = ({ city }) => {
 };
 
 Header.propTypes = {
-  city: PropTypes.shape(cityType)
+  city: PropTypes.shape(cityType),
+  onHeightContainerChange: PropTypes.func.isRequired
 };
 
 Header.defaultProps = {

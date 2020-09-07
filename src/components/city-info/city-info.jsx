@@ -9,11 +9,12 @@ import './city-info.css';
 import cityType from '../../types/city';
 import defaultCity from '../../mocks/city';
 
-const CityInfo = ({ city }) => {
+const CityInfo = ({ city, onHeightContainerChange }) => {
   return (
     <>
       <Header
         city={city}
+        onHeightContainerChange={onHeightContainerChange}
       />
       <Details
         city={city}
@@ -24,7 +25,8 @@ const CityInfo = ({ city }) => {
 };
 
 CityInfo.propTypes = {
-  city: PropTypes.shape(cityType)
+  city: PropTypes.shape(cityType),
+  onHeightContainerChange: PropTypes.func.isRequired
 };
 
 CityInfo.defaultProps = {

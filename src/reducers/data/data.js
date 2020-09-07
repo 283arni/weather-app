@@ -1,6 +1,6 @@
-import { extend } from '../utils';
-import keyApi from '../const';
-import WeatherModel from '../adapters/weather-model';
+import { extend } from '../../utils';
+import { keyApi } from '../../const';
+import WeatherModel from '../../adapters/weather-model';
 
 const initialState = {
   city: null,
@@ -8,7 +8,7 @@ const initialState = {
   weatherDays: []
 };
 
-const Actions = {
+const Action = {
   GET_CITY: 'GET_CITY',
   ADD_CITY: 'ADD_CITY',
   GET_WATHER_DAYS: 'GET_WATHER_DAYS'
@@ -16,15 +16,15 @@ const Actions = {
 
 const ActionCreator = {
   getCity: (city) => ({
-    type: Actions.GET_CITY,
+    type: Action.GET_CITY,
     payload: city
   }),
   addCity: (city, cities) => ({
-    type: Actions.ADD_CITY,
+    type: Action.ADD_CITY,
     payload: [...cities, city]
   }),
   getWeatherDays: (weather) => ({
-    type: Actions.GET_WATHER_DAYS,
+    type: Action.GET_WATHER_DAYS,
     payload: weather
   })
 };
@@ -46,15 +46,15 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case Actions.GET_CITY:
+    case Action.GET_CITY:
       return extend(state, {
         city: action.payload
       });
-    case Actions.ADD_CITY:
+    case Action.ADD_CITY:
       return extend(state, {
         cities: action.payload
       });
-    case Actions.GET_WATHER_DAYS:
+    case Action.GET_WATHER_DAYS:
       return extend(state, {
         weatherDays: action.payload
       });

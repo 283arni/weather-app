@@ -1,16 +1,17 @@
 // import { createSelector } from 'reselect';
 // import WeatherModel from '../adapters/weather-model';
+import NameSpace from '../name-space';
 
 const getCities = (state) => {
-  return state.cities;
+  return state[NameSpace.DATA].cities;
 };
 
 const getCity = (state) => {
-  return state.city;
+  return state[NameSpace.DATA].city;
 };
 
 const getWeatherDays = (state) => {
-  return state.weatherDays;
+  return state[NameSpace.DATA].weatherDays;
 };
 
 // const getConvertCity = createSelector(

@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom';
 
 import LocationForm from '../location-form/location-form';
 import withLocationForm from '../../hocs/with-location-form';
+import { Heigth } from '../../const';
 import './location.css';
 
 const LocationFormWrapper = withLocationForm(LocationForm);
 
-const Location = ({ cities, onFormSubmit, onCityClick }) => {
+const Location = ({
+  cities,
+  onFormSubmit,
+  onCityClick,
+  onHeightContainerChange
+}) => {
   return (
     <div className="location">
       <h2 className="location__title">Location</h2>
@@ -25,7 +31,10 @@ const Location = ({ cities, onFormSubmit, onCityClick }) => {
             <Link
               to="/details"
               className="location__link"
-              onClick={() => onCityClick(city)}
+              onClick={() => {
+                onCityClick(city);
+                onHeightContainerChange(Heigth.MIN);
+              }}
             >
               <span className="location__name">{city.name}</span>
               <span className="location__temperature">
@@ -45,7 +54,8 @@ Location.propTypes = {
     PropTypes.any
   ).isRequired,
   onFormSubmit: PropTypes.func.isRequired,
-  onCityClick: PropTypes.func.isRequired
+  onCityClick: PropTypes.func.isRequired,
+  onHeightContainerChange: PropTypes.func.isRequired
 };
 
 export default Location;

@@ -5,31 +5,32 @@ import PropTypes from 'prop-types';
 
 import Location from '../location/location';
 import CityInfo from '../city-info/city-info';
-import { getCities, getCity } from '../../reducers/selector';
+import { getCities, getCity } from '../../reducers/data/selector';
+import { getHeightContainer } from '../../reducers/site/selector';
 
-import { Operation, ActionCreator } from '../../reducers/data';
+import { Operation, ActionCreator } from '../../reducers/data/data';
+import { ActionCreator as SiteActionCreator } from '../../reducers/site/site';
 import cityType from '../../types/city';
 import defaultCity from '../../mocks/city';
+import { Background } from '../../const';
 import './app.css';
 
 class App extends PureComponent {
-  // need refactoring
-  static changeBackgroundImage(city) {
-    console.log(city);
-    if (city && (new Date(city.dt).getHours() >= 20 || new Date(city.dt).getHours() <= 5)) {
-      return "url('public/images/graphic-night.svg')";
-    }
-    if (!city || city.dt) {
-      return "url('public/images/graphic.svg')";
-    }
-
-    return "url('public/images/graphic.svg')";
-  }
-
   constructor(props) {
     super(props);
 
     this._weather = React.createRef();
+    this._weatherContainer = React.createRef();
+  }
+
+  handleBackgroundImageChange(city) {
+    this.city = city;
+
+    if (city && (new Date(city.dt).getHours() >= 20 || new Date(city.dt).getHours() <= 5)) {
+      return Background.NIGHT;
+    }
+
+    return Background.LIGHT;
   }
 
   render() {
@@ -37,19 +38,27 @@ class App extends PureComponent {
       cities,
       city,
       onFormSubmit,
-      onCityClick
+      onCityClick,
+      heightContainer,
+      onHeightContainerChange
     } = this.props;
-    console.log(this._weather);
+    console.log(this.props);
     return (
       <div className="wrapper">
         <div
           ref={this._weather}
           className="weather"
           style={{
-            backgroundImage: this.changeBackgroundImage(city)
+            backgroundImage: this.handleBackgroundImageChange(city)
           }}
         >
-          <div className="weather__container">
+          <div
+            ref={this._weatherContainer}
+            className="weather__container"
+            style={{
+              marginTop: `${heightContainer}px`
+            }}
+          >
             <BrowserRouter>
               <Switch>
                 <Route path="/" exact>
@@ -57,11 +66,13 @@ class App extends PureComponent {
                     cities={cities}
                     onFormSubmit={onFormSubmit}
                     onCityClick={onCityClick}
+                    onHeightContainerChange={onHeightContainerChange}
                   />
                 </Route>
                 <Route path="/details" exact>
                   <CityInfo
                     city={city}
+                    onHeightContainerChange={onHeightContainerChange}
                   />
                 </Route>
               </Switch>
@@ -79,7 +90,9 @@ App.propTypes = {
   ).isRequired,
   city: PropTypes.shape(cityType),
   onFormSubmit: PropTypes.func.isRequired,
-  onCityClick: PropTypes.func.isRequired
+  onCityClick: PropTypes.func.isRequired,
+  heightContainer: PropTypes.number.isRequired,
+  onHeightContainerChange: PropTypes.func.isRequired
 };
 
 App.defaultProps = {
@@ -88,7 +101,8 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  cities: getCities(state)
+  cities: getCities(state),
+  heightContainer: getHeightContainer(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -97,6 +111,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onCityClick(city) {
     dispatch(ActionCreator.getCity(city));
+  },
+  onHeightContainerChange(height) {
+    dispatch(SiteActionCreator.changeHeight(height));
   }
 });
 
