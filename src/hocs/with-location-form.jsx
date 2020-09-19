@@ -1,5 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+import { Operation } from '../reducers/data/data';
+import { getCities } from '../reducers/data/selector';
 
 const withLocationForm = (Component) => {
   class WithLocationForm extends PureComponent {
@@ -42,7 +46,17 @@ const withLocationForm = (Component) => {
     onFormSubmit: PropTypes.func.isRequired
   };
 
-  return WithLocationForm;
+  const mapStateToProps = (state) => ({
+    cities: getCities(state)
+  });
+
+  const mapDispatchToProps = (dispatch) => ({
+    onFormSubmit(city, cities) {
+      dispatch(Operation.loadCity(city, cities));
+    }
+  });
+
+  return connect(mapStateToProps, mapDispatchToProps)(WithLocationForm);
 };
 
 export default withLocationForm;

@@ -9,27 +9,3 @@
   margin-bottom: 30px;
 }
 
-
-
-.location__link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 4px;
-  padding: 5px;
-}
-
-.location__link:hover {
-  background: #ECF7FD;
-}
-
-.location__name {
-  font-weight: normal;
-  font-size: 1.2rem;
-  color: #444444;
-}
-
-.location__temperature {
-  font-weight: 300;
-  color: #666666;
-}

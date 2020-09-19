@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 
 import Location from '../location/location';
 import CityInfo from '../city-info/city-info';
-import { getCities, getCity } from '../../reducers/data/selector';
+import { getCity } from '../../reducers/data/selector';
 import { getHeightContainer } from '../../reducers/site/selector';
 
-import { Operation, ActionCreator } from '../../reducers/data/data';
-import { ActionCreator as SiteActionCreator } from '../../reducers/site/site';
 import cityType from '../../types/city';
 import defaultCity from '../../mocks/city';
 import { Background } from '../../const';
@@ -35,14 +33,10 @@ class App extends PureComponent {
 
   render() {
     const {
-      cities,
       city,
-      onFormSubmit,
-      onCityClick,
-      heightContainer,
-      onHeightContainerChange
+      heightContainer
     } = this.props;
-    console.log(this.props);
+
     return (
       <div className="wrapper">
         <div
@@ -61,20 +55,8 @@ class App extends PureComponent {
           >
             <BrowserRouter>
               <Switch>
-                <Route path="/" exact>
-                  <Location
-                    cities={cities}
-                    onFormSubmit={onFormSubmit}
-                    onCityClick={onCityClick}
-                    onHeightContainerChange={onHeightContainerChange}
-                  />
-                </Route>
-                <Route path="/details" exact>
-                  <CityInfo
-                    city={city}
-                    onHeightContainerChange={onHeightContainerChange}
-                  />
-                </Route>
+                <Route path="/" exact component={Location} />
+                <Route path="/details" exact component={CityInfo} />
               </Switch>
             </BrowserRouter>
           </div>
@@ -85,14 +67,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  cities: PropTypes.arrayOf(
-    PropTypes.any
-  ).isRequired,
   city: PropTypes.shape(cityType),
-  onFormSubmit: PropTypes.func.isRequired,
-  onCityClick: PropTypes.func.isRequired,
-  heightContainer: PropTypes.number.isRequired,
-  onHeightContainerChange: PropTypes.func.isRequired
+  heightContainer: PropTypes.number.isRequired
 };
 
 App.defaultProps = {
@@ -101,21 +77,8 @@ App.defaultProps = {
 
 const mapStateToProps = (state) => ({
   city: getCity(state),
-  cities: getCities(state),
   heightContainer: getHeightContainer(state)
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  onFormSubmit(city, cities) {
-    dispatch(Operation.loadCity(city, cities));
-  },
-  onCityClick(city) {
-    dispatch(ActionCreator.getCity(city));
-  },
-  onHeightContainerChange(height) {
-    dispatch(SiteActionCreator.changeHeight(height));
-  }
-});
-
 export { App };
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

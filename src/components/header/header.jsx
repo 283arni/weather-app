@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { getCity } from '../../reducers/data/selector';
+import { ActionCreator as SiteActionCreator } from '../../reducers/site/site';
 import cityType from '../../types/city';
 import defaultCity from '../../mocks/city';
 import { Heigth } from '../../const';
@@ -35,4 +38,15 @@ Header.defaultProps = {
   city: defaultCity
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  city: getCity(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onHeightContainerChange(height) {
+    dispatch(SiteActionCreator.changeHeight(height));
+  }
+});
+
+export { Header };
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

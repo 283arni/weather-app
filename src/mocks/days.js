@@ -2,26 +2,26 @@ const days = [
   {
     date: 'Mon, 21',
     icon: 'images/sunny-1.svg',
-    'temperature-max': 32,
-    'temperature-min': 26
+    tempMax: 32,
+    tempMin: 26
   },
   {
     date: 'Tue, 22',
     icon: 'images/cloudy-2.svg',
-    'temperature-max': 33,
-    'temperature-min': 21
+    tempMax: 33,
+    tempMin: 21
   },
   {
     date: 'Wed, 22',
     icon: 'images/hazy.svg',
-    'temperature-max': 36,
-    'temperature-min': 26
+    tempMax: 36,
+    tempMin: 26
   },
   {
     date: 'Thu, 23',
     icon: 'images/sunny-1.svg',
-    'temperature-max': 35,
-    'temperature-min': 28
+    tempMax: 35,
+    tempMin: 28
   }
 ];
 

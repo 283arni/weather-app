@@ -1,0 +1,18 @@
+.details__item {
+  padding: 24px 0;
+  text-align: center;
+  min-width: 100px;
+}
+
+.details__icon {
+  margin-bottom: 10px;
+}
+
+.details__value {
+  font-size: 1rem;
+}
+
+.details__title {
+  font-size: 0.5rem;
+  color: #999999;
+}
